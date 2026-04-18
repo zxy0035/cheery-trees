@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>杨家东庄樱桃认养</title>
+<style>
+  *{margin:0;padding:0;box-sizing:border-box;font-family:微软雅黑,sans-serif}
+  body{background:linear-gradient(135deg,#e8f5e9,#fff8e1);min-height:100vh;padding:40px 20px;text-align:center}
+  .box{max-width:450px;margin:0 auto;background:white;padding:40px 30px;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,0.08)}
+  h1{color:#2e7d32;font-size:24px;margin-bottom:8px}
+  h2{color:#388e3c;font-size:19px;margin-bottom:24px}
+  .info{color:#666;margin:10px 0 24px;line-height:1.6}
+  input{width:100%;padding:14px 16px;border:1px solid #ddd;border-radius:12px;font-size:16px;margin-bottom:20px;outline:none}
+  .btn{width:100%;padding:15px;background:#07C160;color:white;border:none;border-radius:12px;font-size:18px;font-weight:bold;cursor:pointer}
+
+  /* 弹窗 */
+  .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:999}
+  .modal-body{background:white;width:340px;padding:30px;border-radius:20px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
+  .modal-body img{width:240px;margin:10px auto;border-radius:8px}
+  .tip{color:#666;margin:10px 0 20px}
+  .next-btn{padding:10px 24px;background:#2e7d32;color:white;border:none;border-radius:8px;cursor:pointer;margin-top:10px}
+  .close{padding:10px 24px;background:#999;color:white;border:none;border-radius:8px;cursor:pointer;margin-left:10px}
+
+  /* 感谢页面 */
+  .thank{display:none;text-align:center}
+  .thank h3{font-size:22px;color:#2e7d32;margin-bottom:20px}
+  .thank p{color:#555;line-height:1.8;margin-bottom:20px}
+  .back{padding:12px 30px;background:#388e32;color:white;border:none;border-radius:10px;cursor:pointer}
+</style>
+</head>
+
+<body>
+
+<div class="box" id="page1">
+  <h1>杨家东庄·“守水兴业”</h1>
+  <h2>樱桃认养 快乐助农</h2>
+  <p class="info">认养一棵樱桃树，助力乡村振兴<br>守护水源，共享丰收</p >
+
+  <input type="text" id="name" placeholder="请输入认养人姓名">
+  <button class="btn" onclick="showPay()">立即认养 50元</button>
+</div>
+
+<!-- 支付弹窗 -->
+<div class="modal" id="payModal">
+  <div class="modal-body">
+    <h3>微信支付 50元</h3>
+    < img src="https://picsum.photos/300/300" alt="微信收款码">
+    <p class="tip">（演示用，无需真实付款）</p >
+    <button class="next-btn" onclick="showThank()">已完成付款</button>
+    <button class="close" onclick="closePay()">关闭</button>
+  </div>
+</div>
+
+<!-- 感谢页面 -->
+<div class="box thank" id="page2">
+  <h3>🎉 认养成功！</h3>
+  <p>尊敬的 <span id="nickname" style="color:#07C160;font-weight:bold"></span>：</p >
+  <p>非常感谢您认养樱桃树、助力杨家东庄乡村振兴！</p >
+  <p>您已成功认养一棵樱桃树，我们将为您建档养护，成熟后第一时间为您送上果实。</p >
+  <p>感谢您的爱心助农！</p >
+  <button class="back" onclick="backHome()">返回首页</button>
+</div>
+
+<script>
+function showPay(){
+  let name = document.getElementById('name').value.trim()
+  if(!name){alert('请填写姓名');return}
+  document.getElementById('payModal').style.display='block'
+}
+function closePay(){
+  document.getElementById('payModal').style.display='none'
+}
+function showThank(){
+  document.getElementById('payModal').style.display='none'
+  document.getElementById('page1').style.display='none'
+  document.getElementById('page2').style.display='block'
+  document.getElementById('nickname').innerText = document.getElementById('name').value
+}
+function backHome(){
+  document.getElementById('page1').style.display='block'
+  document.getElementById('page2').style.display='none'
+}
+</script>
+
+</body>
+</html>
