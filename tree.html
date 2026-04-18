@@ -3,85 +3,113 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>杨家东庄樱桃认养</title>
+<title>杨家东庄樱桃认养平台</title>
 <style>
   *{margin:0;padding:0;box-sizing:border-box;font-family:微软雅黑,sans-serif}
-  body{background:linear-gradient(135deg,#e8f5e9,#fff8e1);min-height:100vh;padding:40px 20px;text-align:center}
-  .box{max-width:450px;margin:0 auto;background:white;padding:40px 30px;border-radius:24px;box-shadow:0 10px 30px rgba(0,0,0,0.08)}
-  h1{color:#2e7d32;font-size:24px;margin-bottom:8px}
-  h2{color:#388e3c;font-size:19px;margin-bottom:24px}
-  .info{color:#666;margin:10px 0 24px;line-height:1.6}
-  input{width:100%;padding:14px 16px;border:1px solid #ddd;border-radius:12px;font-size:16px;margin-bottom:20px;outline:none}
-  .btn{width:100%;padding:15px;background:#07C160;color:white;border:none;border-radius:12px;font-size:18px;font-weight:bold;cursor:pointer}
-
-  /* 弹窗 */
-  .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.6);z-index:999}
-  .modal-body{background:white;width:340px;padding:30px;border-radius:20px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%)}
-  .modal-body img{width:240px;margin:10px auto;border-radius:8px}
-  .tip{color:#666;margin:10px 0 20px}
-  .next-btn{padding:10px 24px;background:#2e7d32;color:white;border:none;border-radius:8px;cursor:pointer;margin-top:10px}
-  .close{padding:10px 24px;background:#999;color:white;border:none;border-radius:8px;cursor:pointer;margin-left:10px}
-
-  /* 感谢页面 */
-  .thank{display:none;text-align:center}
-  .thank h3{font-size:22px;color:#2e7d32;margin-bottom:20px}
-  .thank p{color:#555;line-height:1.8;margin-bottom:20px}
-  .back{padding:12px 30px;background:#388e32;color:white;border:none;border-radius:10px;cursor:pointer}
+  body{background:linear-gradient(135deg,#e8f5e9,#fff8e1);min-height:100vh;padding:30px 15px}
+  .container{max-width:500px;margin:0 auto}
+  .card{background:white;border-radius:20px;padding:30px 25px;margin-bottom:20px;box-shadow:0 6px 20px rgba(0,0,0,0.07)}
+  h1{color:#2e7d32;text-align:center;font-size:25px;margin-bottom:8px}
+  h2{color:#388e3c;text-align:center;font-size:19px;margin-bottom:20px}
+  .desc{text-align:center;color:#666;line-height:1.7;margin-bottom:25px}
+  input{width:100%;padding:14px;border:1px solid #ddd;border-radius:10px;font-size:16px;margin-bottom:18px;outline:none}
+  .main-btn{width:100%;padding:15px;background:#07C160;color:white;border:none;border-radius:12px;font-size:18px;font-weight:bold;cursor:pointer;margin:6px 0}
+  .second-btn{width:100%;padding:12px;background:#2e7d32;color:white;border:none;border-radius:10px;font-size:16px;cursor:pointer;margin:6px 0}
+  .modal{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.65);z-index:999}
+  .modal-inner{background:white;width:350px;padding:30px 20px;border-radius:18px;position:absolute;top:50%;left:50%;transform:translate(-50%,-50%);text-align:center}
+  .qrcode{width:250px;border-radius:8px;margin:12px 0}
+  .title{color:#2e7d32;font-size:20px;font-weight:bold;margin-bottom:15px;text-align:center}
+  .info-row{display:flex;justify-content:space-between;padding:10px 12px;background:#f8fff9;border-radius:8px;margin:8px 0}
+  .report-week{border-left:4px solid #07C160;padding:12px 15px;background:#f8fff9;border-radius:0 10px 10px 0;margin:12px 0}
+  .week-tag{display:inline-block;background:#07C160;color:white;padding:3px 10px;border-radius:12px;font-size:13px;margin-bottom:8px}
+  .back-home{margin-top:20px;width:100%;padding:12px;background:#666;color:white;border:none;border-radius:8px;cursor:pointer}
 </style>
 </head>
 
 <body>
+<div class="container">
 
-<div class="box" id="page1">
-  <h1>杨家东庄·“守水兴业”</h1>
-  <h2>樱桃认养 快乐助农</h2>
-  <p class="info">认养一棵樱桃树，助力乡村振兴<br>守护水源，共享丰收</p >
-
-  <input type="text" id="name" placeholder="请输入认养人姓名">
-  <button class="btn" onclick="showPay()">立即认养 50元</button>
-</div>
-
-<!-- 支付弹窗 -->
-<div class="modal" id="payModal">
-  <div class="modal-body">
-    <h3>微信支付 50元</h3>
-    < img src="https://picsum.photos/300/300" alt="微信收款码">
-    <p class="tip">（演示用，无需真实付款）</p >
-    <button class="next-btn" onclick="showThank()">已完成付款</button>
-    <button class="close" onclick="closePay()">关闭</button>
+  <div class="card" id="pageHome">
+    <h1>杨家东庄·“守水兴业”</h1>
+    <h2>樱桃认养 快乐助农</h2>
+    <p class="desc">认领专属樱桃果树<br>守护绿水青山，助力乡村助农</p >
+    <input type="text" id="userName" placeholder="请填写认养人姓名">
+    <button class="main-btn" onclick="goPay()">立即认养 50元/棵</button>
   </div>
-</div>
 
-<!-- 感谢页面 -->
-<div class="box thank" id="page2">
-  <h3>🎉 认养成功！</h3>
-  <p>尊敬的 <span id="nickname" style="color:#07C160;font-weight:bold"></span>：</p >
-  <p>非常感谢您认养樱桃树、助力杨家东庄乡村振兴！</p >
-  <p>您已成功认养一棵樱桃树，我们将为您建档养护，成熟后第一时间为您送上果实。</p >
-  <p>感谢您的爱心助农！</p >
-  <button class="back" onclick="backHome()">返回首页</button>
+  <div class="modal" id="payModal">
+    <div class="modal-inner" onclick="event.stopPropagation()">
+      <h3>微信扫码付款</h3>
+      < img class="qrcode" src="https://picsum.photos/300/300">
+      <p style="color:#666;margin:10px 0">演示使用，无需真实支付</p >
+      <button class="second-btn" onclick="goSuccess()">已付款，查看树主档案</button>
+      <button class="back-home" onclick="closePay()">关闭</button>
+    </div>
+  </div>
+
+  <div class="card" id="pageProfile" style="display:none">
+    <div class="title">🌳 树主认养档案</div>
+    <div class="info-row"><span>认养人</span><span id="nameText" style="font-weight:bold;color:#2e7d32"></span></div>
+    <div class="info-row"><span>果树编号</span><span>Cherry-2026-001</span></div>
+    <div class="info-row"><span>认养日期</span><span id="nowDate"></span></div>
+    <div class="info-row"><span>负责地块</span><span>杨家东庄樱桃园A区</span></div>
+    <div class="info-row"><span>专属权益</span><span>全年养护+果实采摘</span></div>
+    <button class="second-btn" onclick="goReport()">查看每周生长报告</button>
+    <button class="back-home" onclick="backHome()">返回首页</button>
+  </div>
+
+  <div class="card" id="pageReport" style="display:none">
+    <div class="title">📋 樱桃树生长周报</div>
+    <div class="report-week">
+      <span class="week-tag">第1周</span>
+      <p>✅ 状态：健康，无病虫害</p >
+      <p>💧 养护：浇水2次，松土1次</p >
+      <p>🌿 生长：新芽萌发，长势正常</p >
+    </div>
+    <div class="report-week">
+      <span class="week-tag">第2周</span>
+      <p>✅ 状态：叶片舒展，枝条健壮</p >
+      <p>💧 养护：施用有机肥，防虫处理</p >
+      <p>🌿 生长：进入快速生长期</p >
+    </div>
+    <div class="report-week">
+      <span class="week-tag">第3周</span>
+      <p>⏳ 预告：即将进入花期</p >
+      <p>📌 后续每周持续更新</p >
+    </div>
+    <button class="back-home" onclick="backProfile()">返回树主档案</button>
+  </div>
+
 </div>
 
 <script>
-function showPay(){
-  let name = document.getElementById('name').value.trim()
+document.getElementById('nowDate').innerText = new Date().toLocaleDateString();
+
+function goPay(){
+  let name = document.getElementById('userName').value.trim();
   if(!name){alert('请填写姓名');return}
-  document.getElementById('payModal').style.display='block'
+  document.getElementById('payModal').style.display='block';
 }
-function closePay(){
-  document.getElementById('payModal').style.display='none'
+function closePay(){document.getElementById('payModal').style.display='none'}
+function goSuccess(){
+  closePay();
+  document.getElementById('nameText').innerText = document.getElementById('userName').value;
+  document.getElementById('pageHome').style.display='none';
+  document.getElementById('pageProfile').style.display='block';
 }
-function showThank(){
-  document.getElementById('payModal').style.display='none'
-  document.getElementById('page1').style.display='none'
-  document.getElementById('page2').style.display='block'
-  document.getElementById('nickname').innerText = document.getElementById('name').value
+function goReport(){
+  document.getElementById('pageProfile').style.display='none';
+  document.getElementById('pageReport').style.display='block';
 }
 function backHome(){
-  document.getElementById('page1').style.display='block'
-  document.getElementById('page2').style.display='none'
+  document.getElementById('pageProfile').style.display='none';
+  document.getElementById('pageReport').style.display='none';
+  document.getElementById('pageHome').style.display='block';
+}
+function backProfile(){
+  document.getElementById('pageReport').style.display='none';
+  document.getElementById('pageProfile').style.display='block';
 }
 </script>
-
 </body>
 </html>
